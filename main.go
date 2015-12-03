@@ -28,7 +28,7 @@ func main() {
 		fmt.Println(err.Error())
 	}
 
-	if _, err := db.Exec(fmt.Sprintf("INSERT INTO Persons VALUES (%s)", "DaoCloud")); err != nil {
+	if _, err := db.Exec("INSERT INTO Persons (name) VALUES ('DaoCloud')"); err != nil {
 		fmt.Println(err.Error())
 	}
 
