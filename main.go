@@ -24,9 +24,13 @@ func main() {
 		return
 	}
 
-	_, _ = db.Exec("CREATE TABLE Persons(Name varchar(255))")
+	if _, err := db.Exec("CREATE TABLE Persons(Name varchar(255))"); err != nil {
+		fmt.Println(err.Error())
+	}
 
-	_, _ = db.Exec(fmt.Sprintf("INSERT INTO Persons VALUES (%s)", "DaoCloud"))
+	if _, err := db.Exec(fmt.Sprintf("INSERT INTO Persons VALUES (%s)", "DaoCloud")); err != nil {
+		fmt.Println(err.Error())
+	}
 
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
@@ -34,7 +38,10 @@ func main() {
 	})
 
 	r.GET("/", func(c *gin.Context) {
-		rows, _ := db.Query(`SELECT * FROM Persons`)
+		rows, err := db.Query(`SELECT Name FROM Persons`)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
 		c.JSON(200, rows)
 	})
 
