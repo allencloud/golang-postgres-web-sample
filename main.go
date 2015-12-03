@@ -47,7 +47,7 @@ func main() {
 		for rows.Next() {
 			var name string
 			_ = rows.Scan(&name)
-			data += "name"+"\n"
+			data += name +"\n"
 		}
 
 		fmt.Println(data)
