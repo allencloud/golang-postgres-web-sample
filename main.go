@@ -20,7 +20,8 @@ func main() {
 	fmt.Println(connection_info)
 	db, err := sql.Open("postgres", connection_info)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("Open Error")
+		return
 	}
 
 	err = db.Exec("CREATE TABLE Persons(Name varchar(255))")
