@@ -34,7 +34,7 @@ func main() {
 	})
 
 	r.GET("/", func(c *gin.Context) {
-		rows, err := db.Query(`SELECT Name FROM Persons`)
+		rows, _ := db.Query(`SELECT * FROM Persons`)
 		c.JSON(200, rows)
 	})
 
