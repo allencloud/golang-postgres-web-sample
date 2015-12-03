@@ -9,4 +9,6 @@ RUN go get -d
 
 RUN go build -o webapp
 
+EXPOSE 8080
+
 ENTRYPOINT ["/workspace/app/webapp"]
