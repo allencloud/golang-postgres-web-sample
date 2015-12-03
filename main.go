@@ -24,9 +24,9 @@ func main() {
 		return
 	}
 
-	err = db.Exec("CREATE TABLE Persons(Name varchar(255))")
+	_, _ = db.Exec("CREATE TABLE Persons(Name varchar(255))")
 
-	err = db.Exec(fmt.Sprintf("INSERT INTO Persons VALUES (%s)", "DaoCloud"))
+	_, _ = db.Exec(fmt.Sprintf("INSERT INTO Persons VALUES (%s)", "DaoCloud"))
 
 	rows, err := db.Query(`SELECT Name FROM Persons`)
 
