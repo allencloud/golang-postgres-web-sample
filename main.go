@@ -42,8 +42,16 @@ func main() {
 		if err != nil {
 			fmt.Println(err.Error())
 		}
-		fmt.Println(rows)
-		c.JSON(200, rows)
+		var data string
+
+		for rows.Next() {
+			var name string
+			_ = rows.Scan(&name)
+			data += "name"+"\n"
+		}
+
+		fmt.Println(data)
+		c.JSON(200, data)
 	})
 
 	r.Run(":8080")
