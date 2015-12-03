@@ -28,14 +28,13 @@ func main() {
 
 	_, _ = db.Exec(fmt.Sprintf("INSERT INTO Persons VALUES (%s)", "DaoCloud"))
 
-	rows, err := db.Query(`SELECT Name FROM Persons`)
-
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
 
 	r.GET("/", func(c *gin.Context) {
+		rows, err := db.Query(`SELECT Name FROM Persons`)
 		c.JSON(200, rows)
 	})
 
